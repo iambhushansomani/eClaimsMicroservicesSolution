@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  claims-service:
+    image: claims-service
+    build:
+      context: ./ClaimsService
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8080"
+    networks:
+      - mynetwork
+
+  documents-service:
+    image: documents-service
+    build:
+      context: ./DocumentsService
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8080"
+    networks:
+      - mynetwork
+
+  reports-service:
+    image: reports-service
+    build:
+      context: ./ReportsService
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8080"
+    networks:
+      - mynetwork
+
+  alerts-service:
+    image: alerts-service
+    build:
+      context: ./AlertsService
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8080"
+    networks:
+      - mynetwork
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "YourStrong@Password"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - mynetwork
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - mynetwork
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

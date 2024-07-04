@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alerts-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alerts-service
+  template:
+    metadata:
+      labels:
+        app: alerts-service
+    spec:
+      containers:
+      - name: alerts-service
+        image: alerts-service
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alerts-service
+spec:
+  selector:
+    app: alerts-service
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080

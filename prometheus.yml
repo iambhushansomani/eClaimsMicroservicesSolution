@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Example scrape configuration for your services
+  - job_name: 'claims-service'
+    static_configs:
+      - targets: ['claims-service:8080']  # Assumes your service listens on port 8080
+
+  - job_name: 'documents-service'
+    static_configs:
+      - targets: ['documents-service:8080']  # Assumes your service listens on port 8080
+
+  - job_name: 'reports-service'
+    static_configs:
+      - targets: ['reports-service:8080']  # Assumes your service listens on port 8080
+
+  - job_name: 'alerts-service'
+    static_configs:
+      - targets: ['alerts-service:8080']  # Assumes your service listens on port 8080
