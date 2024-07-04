@@ -13,7 +13,7 @@ This repository contains Kubernetes YAML files to deploy a set of microservices 
 
 Deploy the microservices and necessary components using the following commands:
 
-\`\`\`bash
+```bash
 kubectl apply -f kubernetes/claims-service.yml
 kubectl apply -f kubernetes/documents-service.yml
 kubectl apply -f kubernetes/reports-service.yml
@@ -21,17 +21,17 @@ kubectl apply -f kubernetes/alerts-service.yml
 kubectl apply -f kubernetes/prometheus.yml
 kubectl apply -f kubernetes/grafana.yml
 kubectl apply -f kubernetes/ingress.yml
-\`\`\`
+```
 
 ##### 2. Verify Deployment
 
 After deployment, verify the status:
 
-\`\`\`bash
+```bash
 kubectl get pods
 kubectl get services
 kubectl get ingress
-\`\`\`
+```
 
 ##### 3. Access Services
 
@@ -49,7 +49,7 @@ Once deployed, access the services using the Ingress controller:
 
 To delete the deployed resources:
 
-\`\`\`bash
+```bash
 kubectl delete -f kubernetes/claims-service.yml
 kubectl delete -f kubernetes/documents-service.yml
 kubectl delete -f kubernetes/reports-service.yml
@@ -57,7 +57,7 @@ kubectl delete -f kubernetes/alerts-service.yml
 kubectl delete -f kubernetes/prometheus.yml
 kubectl delete -f kubernetes/grafana.yml
 kubectl delete -f kubernetes/ingress.yml
-\`\`\`
+```
 
 ##### 5. Monitoring and Visualization
 
