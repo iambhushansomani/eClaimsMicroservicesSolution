@@ -6,12 +6,25 @@ This repository contains Kubernetes YAML files to deploy a set of microservices 
 
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/) or a Kubernetes cluster configured
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) command-line tool installed
+- Docker installed to build Docker images locally
 
 #### Kubernetes Configuration
 
-##### 1. Deploy Services
+##### 1. Build and Deploy Docker Images
 
-Deploy the microservices and necessary components using the following commands:
+Build Docker images for the microservices and necessary components. Make sure your Docker daemon is running:
+
+```bash
+# Example command to build Docker images (adjust as per your Dockerfiles)
+docker build -t claims-service ./ClaimsService
+docker build -t documents-service ./DocumentsService
+docker build -t reports-service ./ReportsService
+docker build -t alerts-service ./AlertsService
+```
+
+##### 2. Deploy Services
+
+Deploy the built Docker images and necessary components using the following commands:
 
 ```bash
 kubectl apply -f kubernetes/claims-service.yml
@@ -23,7 +36,7 @@ kubectl apply -f kubernetes/grafana.yml
 kubectl apply -f kubernetes/ingress.yml
 ```
 
-##### 2. Verify Deployment
+##### 3. Verify Deployment
 
 After deployment, verify the status:
 
@@ -33,7 +46,7 @@ kubectl get services
 kubectl get ingress
 ```
 
-##### 3. Access Services
+##### 4. Access Services
 
 Once deployed, access the services using the Ingress controller:
 
@@ -45,7 +58,7 @@ Once deployed, access the services using the Ingress controller:
 - **Prometheus:** Access Prometheus for monitoring at \`http://<minikube-ip>/prometheus\`
 - **Grafana:** Access Grafana for visualization at \`http://<minikube-ip>/grafana\` (default credentials: admin/admin).
 
-##### 4. Cleanup
+##### 5. Cleanup
 
 To delete the deployed resources:
 
@@ -58,13 +71,6 @@ kubectl delete -f kubernetes/prometheus.yml
 kubectl delete -f kubernetes/grafana.yml
 kubectl delete -f kubernetes/ingress.yml
 ```
-
-##### 5. Monitoring and Visualization
-
-To monitor and visualize your services:
-
-- **Prometheus:** Configure Prometheus to scrape metrics from your services.
-- **Grafana:** Connect Grafana to Prometheus as a data source for visualization and monitoring.
 
 #### Additional Notes
 
