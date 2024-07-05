@@ -14,9 +14,11 @@ spec:
     spec:
       containers:
       - name: claims-service
-        image: claims-service
+        image: claims-service:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
+
 ---
 apiVersion: v1
 kind: Service

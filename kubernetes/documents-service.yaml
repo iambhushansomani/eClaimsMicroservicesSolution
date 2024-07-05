@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: documents-service
-        image: documents-service
+        image: documents-service:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
 ---

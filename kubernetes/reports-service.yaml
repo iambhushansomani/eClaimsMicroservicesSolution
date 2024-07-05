@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: reports-service
-        image: reports-service
+        image: reports-service:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
 ---

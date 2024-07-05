@@ -6,34 +6,34 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: example.com
-    http:
-      paths:
-      - pathType: Prefix
-        path: /claims-service
-        backend:
-          service:
-            name: claims-service
-            port:
-              number: 8080
-      - pathType: Prefix
-        path: /documents-service
-        backend:
-          service:
-            name: documents-service
-            port:
-              number: 8080
-      - pathType: Prefix
-        path: /reports-service
-        backend:
-          service:
-            name: reports-service
-            port:
-              number: 8080
-      - pathType: Prefix
-        path: /alerts-service
-        backend:
-          service:
-            name: alerts-service
-            port:
-              number: 8080
+    - host: ee123.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /alerts-service
+            backend:
+              service:
+                name: alerts-service
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /claims-service
+            backend:
+              service:
+                name: claims-service
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /documents-service
+            backend:
+              service:
+                name: documents-service
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /reports-service
+            backend:
+              service:
+                name: reports-service
+                port:
+                  number: 8080

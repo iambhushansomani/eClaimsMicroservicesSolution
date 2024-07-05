@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: alerts-service
-        image: alerts-service
+        image: alerts-service:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
 ---
